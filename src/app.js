@@ -2,8 +2,6 @@ const express = require("express")
 const app = express()
 const { connectDB } = require("./config/database")
 const cookieParser = require("cookie-parser")
-const jwt = require("jsonwebtoken")
-const userAuth = require("./middlewares/auth")
 
 app.use(express.json())
 app.use(cookieParser())
