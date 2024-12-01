@@ -64,6 +64,11 @@ userRouter.get("/user/feed", userAuth, async (req, res) => {
       hideUsersFromFeed.add(req.toUserId.toString());
     });
 
+    const page = parseInt(req.query.page) || 1;
+    let limit = parseInt(req.query.limit) || 3;
+    limit = limit > 3 ? 3 : limit;
+    const skip = (page - 1) * limit;
+
     const users = await User.find({
       $and: [
         {
@@ -73,9 +78,12 @@ userRouter.get("/user/feed", userAuth, async (req, res) => {
           _id: { $ne: loggedUser._id },
         },
       ],
-    }).select(userSafeData);
+    })
+      .select(userSafeData)
+      .skip(skip)
+      .limit(limit);
 
-    res.send(users);
+    res.json({ message: "Feed fetch successfully", users });
   } catch (error) {
     res.status(400).send("Error occur " + error);
   }
