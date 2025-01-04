@@ -1,12 +1,11 @@
 {
-  "name": "coding",
+  "name": "devtinder",
   "version": "1.0.0",
   "description": "devtinder",
-  "main": "index.js",
+  "main": "server/app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js"
   },
   "keywords": [
     "node.js",
