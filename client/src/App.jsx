@@ -1,11 +1,18 @@
 import React from "react";
-import NavBar from "./components/NavBar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Body from "./components/Body";
+import Login from "./components/Login";
 
 const App = () => {
   return (
     <>
-      <NavBar />
-      <h1 className="text-3xl font-bold underline">Hello</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Body />}>
+            <Route path="/login" element={<Login />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };
